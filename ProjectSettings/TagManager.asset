@@ -44,3 +44,6 @@ TagManager:
   - name: Wowzer
     uniqueID: 388404641
     locked: 0
+  - name: New Layer
+    uniqueID: 2573424741
+    locked: 0
