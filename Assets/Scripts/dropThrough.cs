@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class dropThrough : MonoBehaviour
 {
-    Collider2D coll;
+    CompositeCollider2D coll;
 
     void Awake()
     {
-        coll = gameObject.GetComponent<Collider2D>();
+        coll = gameObject.GetComponent<CompositeCollider2D>();
     }
 
     void FixedUpdate()
