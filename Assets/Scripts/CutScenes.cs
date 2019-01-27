@@ -11,13 +11,14 @@ public class CutScenes : MonoBehaviour
     public TextMeshProUGUI text2;
     public TextMeshProUGUI text3;
     public float playSpeed = .01f;
-    private float targetAlpha;
-    private float targetText;
-    private TextMeshProUGUI currentText;
+    public float targetAlpha;
+    public float targetText;
+    public TextMeshProUGUI currentText;
     public float cooldown = 2f;
     public float timer;
     public bool play1bool;
-    private int fadeIn;
+    public int fadeIn;
+    public int fadeInImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +35,12 @@ public class CutScenes : MonoBehaviour
         fadeImage.color = zf;
         timer = 0;
         fadeIn = -1;
+        fadeInImage = -1;
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {  
         Color curColor = fadeImage.color;
         if ((fadeIn == 1 && curColor.a < targetAlpha)  || (fadeIn == -1 && curColor.a > targetAlpha)) 
         {
@@ -46,11 +48,11 @@ public class CutScenes : MonoBehaviour
             fadeImage.color = curColor;
         }
 
-        Color curColor2 = text1.color;
-        if ((fadeIn == 1 && curColor2.a < targetText) || (fadeIn == -1 && curColor2.a > targetText))
+        Color curColor2 = currentText.color;
+        if ((fadeInImage == 1 && curColor2.a < targetText) || (fadeInImage == -1 && curColor2.a > targetText))
         {
-            curColor2.a = curColor2.a + fadeIn * playSpeed * Time.deltaTime;
-            text1.color = curColor;
+            curColor2.a = curColor2.a + fadeInImage * playSpeed * Time.deltaTime;
+            currentText.color = curColor2;
         }
         if (play1bool)
         {
@@ -66,7 +68,9 @@ public class CutScenes : MonoBehaviour
             targetAlpha = 0;
             targetText = 0;
             fadeIn = -1;
+            fadeInImage = -1;
         }
+        Debug.Log(curColor2.a);
     }
 
     public void play1()
@@ -75,6 +79,7 @@ public class CutScenes : MonoBehaviour
         targetAlpha = 1;
         targetText = 1;
         fadeIn = 1;
+        fadeInImage = 1;
     }
 
     public void play2()
@@ -83,6 +88,7 @@ public class CutScenes : MonoBehaviour
         targetAlpha = 1;
         targetText = 1;
         fadeIn = 1;
+        fadeInImage = 1;
     }
 
     public void play3()
@@ -91,5 +97,6 @@ public class CutScenes : MonoBehaviour
         targetAlpha = 1;
         targetText = 1;
         fadeIn = 1;
+        fadeInImage = 1;
     }
 }
